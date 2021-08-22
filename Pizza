@@ -1,0 +1,40 @@
+class Pizza:
+
+    def __init__(self, name, price, calories, toppings):
+        self.name = name
+        if price <= 0:
+            raise ValueError("The Pizza's price is invalid")
+        else:
+            self.price = price
+        if calories <= 0:
+            raise ValueError("The Pizza's calories are invalid")
+        else:
+            self.calories = calories
+        self.toppings = toppings
+
+    def get_final_price(self, size='Family'):
+        if size == 'XL':
+            return self.price * 1.15
+        if size == 'Family':
+            return self.price
+        if size == 'Personal':
+            return self.price * 0.60
+        raise ValueError('Size must be Personal, Family or XL')
+
+    def add_topping(self, topping, calories, price):
+        if topping in self.toppings:
+            raise ValueError('The topping is already included on this Pizza')
+        self.toppings.append(topping)
+        self.calories += calories
+        self.price += price
+
+    def remove_topping(self, topping, calories, price):
+        if topping not in self.toppings:
+            raise ValueError("This Pizza doesn't include " + topping)
+        self.toppings.remove(topping)
+        self.calories -= calories
+        self.price -= price
+        if self.price <= 0 :
+            raise ValueError("The Pizza's new price is invalid")
+        if self.calories <= 0:
+            raise ValueError("The Pizza's new calories is invalid")
