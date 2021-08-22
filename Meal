@@ -1,0 +1,11 @@
+class Meal:
+
+    def __init__(self, beverage, pizza):
+        self.beverage = beverage
+        self.pizza = pizza
+
+    def get_final_price(self, beverage_size, pizza_size):
+        return self.beverage.get_final_price(beverage_size) + self.pizza.get_final_price(pizza_size)
+
+    def is_healthy(self):
+        return self.beverage.is_diet == True and self.pizza.calories < 1000
